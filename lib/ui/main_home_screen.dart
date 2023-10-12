@@ -1,17 +1,24 @@
+import 'package:chanq_flutter_navigator/components/constants_route.dart';
 import 'package:flutter/material.dart';
 
 class MainHomePage extends Page {
+  final ValueChanged<String> changePage;
+
+  const MainHomePage({required this.changePage});
+
   @override
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
       settings: this,
-      builder: (context) => const MainHomeScreen(),
+      builder: (context) => MainHomeScreen(changePage: changePage),
     );
   }
 }
 
 class MainHomeScreen extends StatelessWidget {
-  const MainHomeScreen({super.key});
+  final ValueChanged<String> changePage;
+
+  const MainHomeScreen({super.key, required this.changePage});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class MainHomeScreen extends StatelessWidget {
         title: const Text('ChanQ Navigator - Pages'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => changePage(settingPageRoute),
             icon: const Icon(Icons.settings),
           )
         ],
@@ -31,21 +38,21 @@ class MainHomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => changePage(mainDetailPage1Route),
               child: const Text("Detail - 1"),
             ),
             const SizedBox(
               height: 10,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => changePage(mainDetailPage2Route),
               child: const Text("Detail - 2"),
             ),
             const SizedBox(
               height: 10,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => changePage(mainDetailPage3Route),
               child: const Text("Detail - 3"),
             ),
           ],

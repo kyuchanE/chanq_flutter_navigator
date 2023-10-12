@@ -23,16 +23,45 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Navigator(
         pages: [
-          MainHomePage(),
-          if (_pageRoute != null && _pageRoute == mainDetailPageRoute)
-            MainDetailPage()
+          MainHomePage(
+            changePage: _changePage,
+          ),
+          if (_pageRoute != null && _pageRoute == mainDetailPage1Route)
+            MainDetailPage(
+              goHome: _returnHome,
+              detailNum: "1",
+            )
+          else if (_pageRoute != null && _pageRoute == mainDetailPage2Route)
+            MainDetailPage(
+              goHome: _returnHome,
+              detailNum: "2",
+            )
+          else if (_pageRoute != null && _pageRoute == mainDetailPage3Route)
+            MainDetailPage(
+              goHome: _returnHome,
+              detailNum: "3",
+            )
           else if (_pageRoute != null && _pageRoute == settingPageRoute)
-            SettingPage()
+            SettingPage(
+              goHome: _returnHome,
+            )
         ],
         onPopPage: (route, result) {
           return true;
         },
       ),
     );
+  }
+
+  void _changePage(String routePage) {
+    setState(() {
+      _pageRoute = routePage;
+    });
+  }
+
+  void _returnHome(String str) {
+    setState(() {
+      _pageRoute = null;
+    });
   }
 }

@@ -1,20 +1,52 @@
 import 'package:flutter/material.dart';
 
 class MainDetailPage extends Page {
+  final ValueChanged<String> goHome;
+  String detailNum;
+
+  MainDetailPage({
+    required this.goHome,
+    required this.detailNum,
+  });
+
   @override
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
       settings: this,
-      builder: (context) => const MainDetailScreen(),
+      builder: (context) => MainDetailScreen(
+        goHome: goHome,
+        detailNum: detailNum,
+      ),
     );
   }
 }
 
 class MainDetailScreen extends StatelessWidget {
-  const MainDetailScreen({super.key});
+  final ValueChanged<String> goHome;
+  String detailNum;
+
+  MainDetailScreen({
+    super.key,
+    required this.goHome,
+    required this.detailNum,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail Page $detailNum'),
+        leading: IconButton(
+          onPressed: () => goHome(""),
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(15),
+        child: Center(
+          child: Text('Detail - $detailNum'),
+        ),
+      ),
+    );
   }
 }
