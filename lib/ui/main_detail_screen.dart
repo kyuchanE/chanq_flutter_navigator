@@ -37,14 +37,27 @@ class MainDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Detail Page $detailNum'),
         leading: IconButton(
-          onPressed: () => goHome(""),
+          // onPressed: () => goHome(""),
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
       body: Container(
         padding: const EdgeInsets.all(15),
         child: Center(
-          child: Text('Detail - $detailNum'),
+          child: Column(
+            children: [
+              Text('Detail - $detailNum'),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("pop"),
+              ),
+            ],
+          ),
         ),
       ),
     );

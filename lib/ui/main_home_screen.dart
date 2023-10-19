@@ -1,4 +1,4 @@
-import 'package:chanq_flutter_navigator/components/constants_route.dart';
+import 'package:chanq_flutter_navigator/utils/constants_route.dart';
 import 'package:flutter/material.dart';
 
 class MainHomePage extends Page {
@@ -36,6 +36,7 @@ class MainHomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElevatedButton(
               onPressed: () => changePage(mainDetailPage1Route),
@@ -54,6 +55,13 @@ class MainHomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () => changePage(mainDetailPage3Route),
               child: const Text("Detail - 3"),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Navigator Pop"),
             ),
           ],
         ),

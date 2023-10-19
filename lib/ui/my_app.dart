@@ -1,8 +1,9 @@
 import 'package:chanq_flutter_navigator/ui/main_detail_screen.dart';
 import 'package:chanq_flutter_navigator/ui/main_home_screen.dart';
 import 'package:chanq_flutter_navigator/ui/setting_screen.dart';
+import 'package:chanq_flutter_navigator/utils/q_logger.dart';
 import 'package:flutter/material.dart';
-import 'package:chanq_flutter_navigator/components/constants_route.dart';
+import 'package:chanq_flutter_navigator/utils/constants_route.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -47,6 +48,12 @@ class _MyAppState extends State<MyApp> {
             )
         ],
         onPopPage: (route, result) {
+          qLogger.i('onPopPage!');
+          if (!route.didPop(result)) {
+            qLogger.i('onPopPage return false');
+            return false;
+          }
+          qLogger.i('onPopPage return true');
           return true;
         },
       ),
@@ -55,12 +62,14 @@ class _MyAppState extends State<MyApp> {
 
   void _changePage(String routePage) {
     setState(() {
+      qLogger.d('_changePage setState');
       _pageRoute = routePage;
     });
   }
 
   void _returnHome(String str) {
     setState(() {
+      qLogger.d('_returnHome setState');
       _pageRoute = null;
     });
   }
