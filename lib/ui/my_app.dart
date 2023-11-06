@@ -14,7 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String? _pageRoute;
   late List<Page> _pageList;
 
   @override
@@ -55,7 +54,6 @@ class _MyAppState extends State<MyApp> {
   void _changePage(String routePage) {
     setState(() {
       qLogger.d('_changePage setState : $routePage');
-      _pageRoute = routePage;
 
       if (routePage.isEmpty) {
         _pageList = [
@@ -96,19 +94,19 @@ class _MyAppState extends State<MyApp> {
         return MainDetailPage(
           goHome: _returnHome,
           detailNum: "1",
-          key: ValueKey(mainDetailPage1Route),
+          key: const ValueKey(mainDetailPage1Route),
         );
       case mainDetailPage2Route:
         return MainDetailPage(
           goHome: _returnHome,
           detailNum: "2",
-          key: ValueKey(mainDetailPage2Route),
+          key: const ValueKey(mainDetailPage2Route),
         );
       case mainDetailPage3Route:
         return MainDetailPage(
           goHome: _returnHome,
           detailNum: "3",
-          key: ValueKey(mainDetailPage3Route),
+          key: const ValueKey(mainDetailPage3Route),
         );
       case settingPageRoute:
         return SettingPage(
@@ -118,19 +116,19 @@ class _MyAppState extends State<MyApp> {
         return SettingDetailPage(
           goHome: _returnHome,
           detailNum: '1',
-          key: ValueKey(settingDetail1PageRoute),
+          key: const ValueKey(settingDetail1PageRoute),
         );
       case settingDetail2PageRoute:
         return SettingDetailPage(
           goHome: _returnHome,
           detailNum: '2',
-          key: ValueKey(settingDetail2PageRoute),
+          key: const ValueKey(settingDetail2PageRoute),
         );
       case settingDetail3PageRoute:
         return SettingDetailPage(
           goHome: _returnHome,
           detailNum: '3',
-          key: ValueKey(settingDetail3PageRoute),
+          key: const ValueKey(settingDetail3PageRoute),
         );
       default:
         return MainHomePage(
