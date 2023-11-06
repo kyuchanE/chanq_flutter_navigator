@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
 
-class SettingPage extends Page {
-  final ValueChanged<String> goHome;
+import '../utils/constants_route.dart';
 
-  const SettingPage({required this.goHome});
+class SettingPage extends Page {
+  final ValueChanged<String> changePage;
+
+  const SettingPage({
+    required this.changePage,
+    super.key = const ValueKey(settingPageRoute),
+  });
 
   @override
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
       settings: this,
       builder: (context) => SettingScreen(
-        goHome: goHome,
+        changePage: changePage,
       ),
     );
   }
 }
 
 class SettingScreen extends StatelessWidget {
-  final ValueChanged<String> goHome;
+  final ValueChanged<String> changePage;
 
   const SettingScreen({
     super.key,
-    required this.goHome,
+    required this.changePage,
   });
 
   @override
@@ -30,10 +35,45 @@ class SettingScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Setting Page'),
         leading: IconButton(
-          onPressed: () => goHome(""),
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back_ios,
           ),
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ElevatedButton(
+              onPressed: () => changePage(settingDetail1PageRoute),
+              child: const Text(
+                'Setting Detail - 1',
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () => changePage(settingDetail2PageRoute),
+              child: const Text(
+                'Setting Detail - 2',
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () => changePage(settingDetail3PageRoute),
+              child: const Text(
+                'Setting Detail - 3',
+              ),
+            ),
+          ],
         ),
       ),
     );

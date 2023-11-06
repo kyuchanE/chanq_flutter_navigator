@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class MainHomePage extends Page {
   final ValueChanged<String> changePage;
 
-  const MainHomePage({required this.changePage});
+  const MainHomePage(
+      {required this.changePage, super.key = const ValueKey(mainPageRoute)});
 
   @override
   Route createRoute(BuildContext context) {
@@ -55,13 +56,6 @@ class MainHomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () => changePage(mainDetailPage3Route),
               child: const Text("Detail - 3"),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Navigator Pop"),
             ),
           ],
         ),

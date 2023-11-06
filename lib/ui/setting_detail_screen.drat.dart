@@ -1,20 +1,21 @@
 import 'package:chanq_flutter_navigator/utils/constants_route.dart';
 import 'package:flutter/material.dart';
 
-class MainDetailPage extends Page {
+class SettingDetailPage extends Page {
   final ValueChanged<String> goHome;
   String detailNum;
 
-  MainDetailPage(
-      {required this.goHome,
-      required this.detailNum,
-      super.key = const ValueKey(mainDetailPage1Route)});
+  SettingDetailPage({
+    required this.goHome,
+    required this.detailNum,
+    super.key = const ValueKey(settingDetail1PageRoute),
+  });
 
   @override
   Route createRoute(BuildContext context) {
     return MaterialPageRoute(
       settings: this,
-      builder: (context) => MainDetailScreen(
+      builder: (context) => SettingDetailScreen(
         goHome: goHome,
         detailNum: detailNum,
       ),
@@ -22,11 +23,11 @@ class MainDetailPage extends Page {
   }
 }
 
-class MainDetailScreen extends StatelessWidget {
+class SettingDetailScreen extends StatelessWidget {
   final ValueChanged<String> goHome;
   String detailNum;
 
-  MainDetailScreen({
+  SettingDetailScreen({
     super.key,
     required this.goHome,
     required this.detailNum,
@@ -36,7 +37,7 @@ class MainDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Page $detailNum'),
+        title: Text('Setting Detail Page $detailNum'),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -47,16 +48,15 @@ class MainDetailScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(15),
         child: Center(
-          child: Column(
-            children: [
-              Text('Detail - $detailNum'),
-              ElevatedButton(
-                onPressed: () => goHome(''),
-                child: Text("Go Home"),
-              ),
-            ],
-          ),
-        ),
+            child: Column(
+          children: [
+            Text('Setting Detail - $detailNum'),
+            ElevatedButton(
+              onPressed: () => goHome(''),
+              child: Text('Go Home'),
+            )
+          ],
+        )),
       ),
     );
   }
